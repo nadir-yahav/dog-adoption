@@ -1,0 +1,57 @@
+<div class="container">
+    <form [formGroup]="adoptForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+            <!-- Weight -->
+            <div class="col-12 col-sm-6 mb-3">
+                <label for="weight" class="form-label">Weight (kg)</label>
+                <input type="number" id="weight" formControlName="weight" class="form-control" min="1" max="100" />
+                <div *ngIf="getErrorMessage('weight')" class="text-danger">
+                    <small>{{ getErrorMessage('weight') }}</small>
+                </div>
+            </div>
+
+            <!-- Color -->
+            <div class="col-12 col-sm-6 mb-3">
+                <label for="color" class="form-label">Color</label>
+                <select id="color" formControlName="color" class="form-select">
+                    <option *ngFor="let color of colors" [value]="color">{{ color }}</option>
+                </select>
+                <div *ngIf="getErrorMessage('color')" class="text-danger">
+                    <small>{{ getErrorMessage('color') }}</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Age -->
+            <div class="col-12 col-sm-6 mb-3">
+                <label for="age" class="form-label">Age (years)</label>
+                <input type="number" id="age" formControlName="age" class="form-control" min="0" max="20" />
+                <div *ngIf="getErrorMessage('age')" class="text-danger">
+                    <small>{{ getErrorMessage('age') }}</small>
+                </div>
+            </div>
+
+            <!-- First Adoption -->
+            <div class="col-12 col-sm-6 mb-3 align-items-start d-flex first-adoption">
+                <input type="checkbox" id="firstAdoption" formControlName="firstAdoption" class="form-check-input" />
+                <label for="firstAdoption" class="form-label">Is this your first adoption?</label>
+            </div>
+        </div>
+
+        <!-- Submit -->
+        <div class="row">
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary" [disabled]="adoptForm.invalid || loading">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm"></span>
+                    Submit
+                </button>
+            </div>
+        </div>
+
+        <!-- Success Message -->
+        <div *ngIf="successMessage" class="alert alert-success mt-3">
+            {{ successMessage }}
+        </div>
+    </form>
+</div>

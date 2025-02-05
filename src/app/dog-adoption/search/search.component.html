@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="search-bar mb-4">
+    <div class="col-12 col-md-6">
+      <form [formGroup]="searchForm">
+        <div class="row">
+          <!-- Breeds -->
+          <div class="col-12 col-sm-6 mb-3">
+            <label for="breed" class="form-label">Dog Breed</label>
+            <select id="breed" formControlName="breed" class="form-select">
+              <option *ngFor="let breed of breeds" [value]="breed">{{ breed }}</option>
+            </select>
+          </div>
+
+          <!-- Dogs To Show -->
+          <div class="col-12 col-sm-6 mb-3">
+            <label for="count" class="form-label">Dogs to Show</label>
+            <input type="number" id="count" formControlName="count" class="form-control" min="1" max="50" />
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Dog Images -->
+  <div class="row">
+    <div class="col-6 col-sm-4 col-md-3 mb-4" *ngFor="let image of images">
+      <img [src]="image" class="img-fluid rounded dog-image" alt="Dog Image" />
+    </div>
+  </div>
+</div>
